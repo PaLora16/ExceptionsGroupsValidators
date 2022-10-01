@@ -39,13 +39,13 @@ class ParticipantValidator:
         except* rep.InvalidAge as e1:
             # ExceptionGroup can hold more exceptions per type
             for exception in e1.exceptions:
-                print(f"Logic for InvalidAge exception {exception}")
-            # Run login  common to all BL exceptions     
+                print(f"Handler for InvalidAge exception {exception}")
+            # Run handler  common to all BL exceptions     
             raise rep.InvalidValidation
 
         except* rep.InvalidNationality as e2:
             for exception in e2.exceptions:
-                print(f"Logic for InvalidNationality exception {exception}")
+                print(f"Handler for InvalidNationality exception {exception}")
             raise rep.InvalidValidation
 
 if __name__ == "__main__":
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     # cannot mix except and except* -> so called naked exceptions are wrapped to ExceptionGroup too
     except* rep.InvalidValidation:
-        print("Optional logic common to all validation errors")
+        print("Optional handler common to all validation errors")
     except* Exception as exc:
         print(f"No validation related errors : {str(exc.exceptions[0])}")            
 
